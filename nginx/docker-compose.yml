@@ -1,0 +1,28 @@
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: lab-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # File cấu hình chính và các file virtual host
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      # Thư mục chứa mã nguồn web tĩnh (HTML/CSS/JS) nếu có
+      - ./html:/usr/share/nginx/html:ro
+      # Thư mục lưu log ra host để dễ xem và debug
+      - ./logs:/var/log/nginx
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+        reservations:
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
