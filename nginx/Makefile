@@ -1,4 +1,4 @@
 
 
 setup:
-	mkdir -p nginx/conf.d html logs
+	mkdir -p conf.d html logs
