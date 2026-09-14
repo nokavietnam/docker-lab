@@ -11,6 +11,7 @@ services:
       - ./conf.d:/etc/nginx/conf.d:ro
       - ./html:/usr/share/nginx/html:ro
       - ./logs:/var/log/nginx
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     deploy:
       resources:
         limits:
