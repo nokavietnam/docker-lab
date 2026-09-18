@@ -5,10 +5,10 @@ services:
       dockerfile: Dockerfile
     container_name: lab-backend
     restart: unless-stopped
-    # networks:
-      # - lab-network
-    ports:
-      - "9090:9090"
+    networks:
+      - lab-network
+    # ports:
+    #   - "9090:9090"
     deploy:
       resources:
         limits:
