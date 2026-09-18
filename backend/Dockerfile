@@ -19,6 +19,6 @@ COPY --from=builder /app/server .
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
-EXPOSE 8080
+EXPOSE 9090
 
 CMD ["./server"]
