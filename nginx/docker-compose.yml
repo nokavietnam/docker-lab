@@ -12,8 +12,13 @@ services:
       - ./html:/usr/share/nginx/html:ro
       - ./logs:/var/log/nginx
       - /etc/letsencrypt:/etc/letsencrypt:ro
+    networks:
+      - lab-network
     deploy:
       resources:
         limits:
           cpus: "0.50"
           memory: 128M
+networks:
+  lab-network:
+    external: true

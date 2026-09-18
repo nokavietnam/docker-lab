@@ -1,0 +1,20 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lab-frontend
+    restart: unless-stopped
+    # Không cần mở port ra host (không cần 'ports: 80:80')
+    # Vì traffic sẽ đi qua gateway
+    networks:
+      - lab-network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+
+networks:
+  lab-network:
+    external: true

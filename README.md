@@ -8,3 +8,7 @@
 docker system prune -af --volumes
 ```
 
+```bash
+docker network create lab-network
+
+```
