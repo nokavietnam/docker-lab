@@ -12,6 +12,11 @@ services:
       - caddy_config:/config
     networks:
       - lab-network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
 
 volumes:
   caddy_data:
