@@ -1,0 +1,3 @@
+lab.nokanguyen.com {
+    reverse_proxy: lab-backend:9090
+}
