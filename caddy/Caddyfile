@@ -1,3 +1,20 @@
 lab.nokanguyen.com {
-    reverse_proxy lab-backend:9090
+    # 1. Reverse proxy toàn bộ API sang Go Backend
+    handle /api/* {
+        reverse_proxy lab-backend:9090
+    }
+
+    # 2. Reverse proxy các request còn lại sang React Frontend
+    handle {
+        reverse_proxy lab-frontend:80
+    }
+
+    # Bật nén file tự động (Gzip / Zstandard) giúp React load nhanh hơn
+    encode gzip zstd
+
+    # Ghi log ra stdout chuẩn JSON (Docker log tự gom)
+    log {
+        output stdout
+        format console
+    }
 }
