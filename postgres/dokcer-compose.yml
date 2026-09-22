@@ -1,0 +1,33 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: lab-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: lab_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: supersecretpassword
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      # Mount file config vào đường dẫn cấu hình riêng
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    networks:
+      - lab-network
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
+        reservations:
+          memory: 128M
+    # Chỉ định Postgres nạp file cấu hình vừa mount
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+
+volumes:
+  postgres_data:
+
+networks:
+  lab-network:
+    external: true
