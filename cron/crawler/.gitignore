@@ -1,6 +1,6 @@
 # Binaries
-crawler
-crawler-bin
+/crawler
+/crawler-bin
 *.exe
 *.test
 
