@@ -1,0 +1,12 @@
+# Binaries
+crawler
+crawler-bin
+*.exe
+*.test
+
+# Environment & Secrets
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db

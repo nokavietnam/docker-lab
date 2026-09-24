@@ -22,6 +22,11 @@ services:
           memory: 512M
         reservations:
           memory: 128M
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-lab_user} -d ${POSTGRES_DB:-muaban_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     # Chỉ định Postgres nạp file cấu hình vừa mount
     command: postgres -c config_file=/etc/postgresql/postgresql.conf
 
